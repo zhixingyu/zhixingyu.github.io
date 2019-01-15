@@ -79,13 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="OpenCV学习笔记（2）矩阵的掩膜操作 获取图像像素指针 掩膜操作  获取图像像素指针   CV_Assert(myImage.depth()==CV_8U); Mat.ptr(int i=0)获取像素矩阵的指针，索引i表示行数，从0行开始计数。 获得当前行指针 const uchar* current=myImage.ptr&amp;lt;uchar&amp;gt;(row); 获取当前像素点p(row,co">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/01/15/OpenCV学习笔记_2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="OpenCV学习笔记（2）矩阵的掩膜操作 获取图像像素指针 掩膜操作  获取图像像素指针   CV_Assert(myImage.depth()==CV_8U); Mat.ptr(int i=0)获取像素矩阵的指针，索引i表示行数，从0行开始计数。 获得当前行指针 const uchar* current=myImage.ptr&amp;lt;uchar&amp;gt;(row); 获取当前像素点p(row,co">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/OpenCV学习笔记_2/mask.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/15/OpenCV学习笔记_2/mask_after.png">
+<meta property="og:updated_time" content="2019-01-15T15:17:53.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="OpenCV学习笔记（2）矩阵的掩膜操作 获取图像像素指针 掩膜操作  获取图像像素指针   CV_Assert(myImage.depth()==CV_8U); Mat.ptr(int i=0)获取像素矩阵的指针，索引i表示行数，从0行开始计数。 获得当前行指针 const uchar* current=myImage.ptr&amp;lt;uchar&amp;gt;(row); 获取当前像素点p(row,co">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/15/OpenCV学习笔记_2/mask.jpg">
 
 
 
@@ -115,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/15/OpenCV学习笔记_2/">
 
 
 
 
 
-  <title>Hexo</title>
+  <title> | Hexo</title>
   
 
 
@@ -140,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -214,9 +220,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/15/OpenCV学习笔记_2/" itemprop="url">Untitled</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -298,9 +302,7 @@
       
 
       
-        
-          
-            <h1 id="OpenCV学习笔记（2）"><a href="#OpenCV学习笔记（2）" class="headerlink" title="OpenCV学习笔记（2）"></a>OpenCV学习笔记（2）</h1><h2 id="矩阵的掩膜操作"><a href="#矩阵的掩膜操作" class="headerlink" title="矩阵的掩膜操作"></a>矩阵的掩膜操作</h2><ul>
+        <h1 id="OpenCV学习笔记（2）"><a href="#OpenCV学习笔记（2）" class="headerlink" title="OpenCV学习笔记（2）"></a>OpenCV学习笔记（2）</h1><h2 id="矩阵的掩膜操作"><a href="#矩阵的掩膜操作" class="headerlink" title="矩阵的掩膜操作"></a>矩阵的掩膜操作</h2><ul>
 <li>获取图像像素指针</li>
 <li><p>掩膜操作</p>
 <ol>
@@ -346,8 +348,6 @@
 <li>对图片做掩膜处理使用效果<br><img src="/2019/01/15/OpenCV学习笔记_2/mask_after.png" alt="处理前后效果对比"></li>
 </ol>
 
-          
-        
       
     </div>
     
@@ -364,175 +364,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/OpenCV学习笔记_1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/15/OpenCV学习笔记_1/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-15T22:11:48+08:00">
-                2019-01-15
-              </time>
+              <a href="/2019/01/15/OpenCV学习笔记_1/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>#OpenCV学习笔记（1）#</p>
-<hr>
-<h2 id="加载、修改、保存图像"><a href="#加载、修改、保存图像" class="headerlink" title="加载、修改、保存图像"></a>加载、修改、保存图像</h2><ul>
-<li>加载图像cv::imread</li>
-<li>修改图像cv::cvtColor</li>
-<li>保存图像cv::imwrite</li>
-</ul>
-<ol>
-<li>加载图像cv::imread<ul>
-<li>imread功能是加载图像文件成为一个Mat对象，其中第一个参数表示图像文件名称。</li>
-<li>第二个参数表示加载图像的类型，支持常见的三个参数值。</li>
-<li>IMREAD_UNCHANGED(&lt;0)表示加载原图，不作任何改变。</li>
-<li>IMREAD_GRAYSCALE(0)表示把原图作为灰度图像加载进来。</li>
-<li>IMREAD_COLOR(&gt;0)表示把原图作为RGB图像加载进来。</li>
-<li>openCV支持JPG、PNG、TIFF等常见格式图像文件加载。</li>
-</ul>
-</li>
-<li>显示图像cv::namedWindow与cv::imshow<ul>
-<li>namedWindow功能时创建一个OpenCV窗口，由OpenCV自动获取与释放，无需手动销毁。</li>
-<li>常用：<code>namedWindow(&quot;Window Title&quot;,WINDOW_AUTOSIZE)</code>。</li>
-<li>WINDOW_AUTOSIZE自动根据图像大小显示窗口大小，不能认为改变窗口大小。</li>
-<li>WINDOW_NORMAL跟QT集成时，允许修改窗口大小。</li>
-<li>imshow根据窗口名称显示图像到指定窗口上去，第一个参数是窗口名称，第二个参数是Mat对象。</li>
-</ul>
-</li>
-<li>修改图像cv::cvtColor<ul>
-<li>cvtColor是把图像从一个色彩空间转换到另一个色彩空间，三个参数：源图像，转换之后的图像，源和目标色彩空间（COLOR_BGR2HLS、COLOR_BGR2GRAY）</li>
-<li><code>cvtColor(image,gray_image,COLOR_BGR2GRAY)</code></li>
-</ul>
-<ol start="3">
-<li>保存图像cv::imwrite</li>
-</ol>
-<ul>
-<li>保存图像文件到指定目录。</li>
-<li>只有8位，16位的PNG、JPG、Tiff文件格式而且是单通道或者三通道的BGR的图像才可以通过这种方式保存。</li>
-<li>保存JGP格式的时候可以保存透明通道的图片。</li>
-<li>可以指定压缩参数。</li>
-</ul>
-<ol start="4">
-<li>代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;opencv2/opencv.hpp&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace cv;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	Mat src = imread(&quot;D:/Documents/Pictures/test1.jpg&quot;);</span><br><span class="line">	if (src.empty()) &#123;</span><br><span class="line">		printf(&quot;could not open\n&quot;);</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	namedWindow(&quot;test opencv set up&quot;,CV_WINDOW_AUTOSIZE);</span><br><span class="line">	imshow(&quot;test opencv set up&quot;,src);</span><br><span class="line">	</span><br><span class="line">	namedWindow(&quot;output windows&quot;,CV_WINDOW_AUTOSIZE);</span><br><span class="line">	Mat output_image;</span><br><span class="line">	cvtColor(src, output_image,CV_BGR2HLS);</span><br><span class="line">	imshow(&quot;output windows&quot;,output_image);</span><br><span class="line"></span><br><span class="line">	imwrite(&quot;D:/Documents/Pictures/test2.jpg&quot;,output_image);</span><br><span class="line">	waitKey(0);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -542,132 +395,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/05/opencv环境搭建/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/05/opencv环境搭建/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-05T19:34:01+08:00">
-                2019-01-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>title: opencv第一课<br>date: 2019-01-05 19:34:01</p>
-<p>#No.1 opencv#</p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -675,6 +407,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -695,8 +431,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -738,6 +483,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OpenCV学习笔记（2）"><span class="nav-number">1.</span> <span class="nav-text">OpenCV学习笔记（2）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的掩膜操作"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵的掩膜操作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -871,6 +632,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
