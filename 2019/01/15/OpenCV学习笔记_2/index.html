@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next gemini use-motion" lang="">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="图像掩膜,filter2D,饱和度,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="矩阵的掩膜操作 获取图像像素指针 掩膜操作   获取图像像素指针  CV_Assert(myImage.depth()==CV_8U); Mat.ptr(int i=0)获取像素矩阵的指针，索引i表示行数，从0行开始计数。 获得当前行指针 const uchar* current=myImage.ptr&amp;lt;uchar&amp;gt;(row); 获取当前像素点p(row,col)的像素值 p(row,">
+<meta name="keywords" content="图像掩膜,filter2D,饱和度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenCV学习笔记_2">
 <meta property="og:url" content="http://yoursite.com/2019/01/15/OpenCV学习笔记_2/index.html">
@@ -88,7 +89,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/OpenCV学习笔记_2/mask.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/OpenCV学习笔记_2/mask_after.png">
-<meta property="og:updated_time" content="2019-01-15T16:29:03.867Z">
+<meta property="og:updated_time" content="2019-01-16T13:27:45.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV学习笔记_2">
 <meta name="twitter:description" content="矩阵的掩膜操作 获取图像像素指针 掩膜操作   获取图像像素指针  CV_Assert(myImage.depth()==CV_8U); Mat.ptr(int i=0)获取像素矩阵的指针，索引i表示行数，从0行开始计数。 获得当前行指针 const uchar* current=myImage.ptr&amp;lt;uchar&amp;gt;(row); 获取当前像素点p(row,col)的像素值 p(row,">
@@ -100,7 +101,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -193,6 +194,36 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -275,6 +306,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenCV/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenCV</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -335,39 +388,6 @@
 <li><p>代码</p>
 <ul>
 <li><p>不使用filter2D</p>
-<p>  #include&lt;opencv2/opencv.hpp&gt;<br>  #include<iostream><br>  #include&lt;math.h&gt;<br>  using namespace cv;<br>  int main(int argc, char ** argv) {<br>  Mat src, dst;<br>  src = imread(“D:/documents/pictures/test1.jpg”);<br>  if (!src.data) {</iostream></p>
-<pre><code>printf(&quot;could not open image\n&quot;);
-return -1;
-</code></pre><p>  }<br>  namedWindow(“input image”, CV_WINDOW_AUTOSIZE);<br>  imshow(“input image”,src);</p>
-<p>  double t = getTickCount();</p>
-<p>  int cols = (src.cols-1)*src.channels();//通道数<br>  int offsetx = src.channels();<br>  int rows = src.rows;</p>
-<p>  dst = Mat::zeros(src.size(),src.type());//类型大小与输入图像一致</p>
-<p>  for (int row = 1; row &lt; (rows - 1); row++) {</p>
-<pre><code>const uchar* previous = src.ptr&lt;uchar&gt;(row - 1);
-const uchar* current = src.ptr&lt;uchar&gt;(row);
-const uchar* next = src.ptr&lt;uchar&gt;(row + 1);
-
-uchar* output = dst.ptr&lt;uchar&gt;(row);
-for (int col = offsetx; col &lt; cols; col++) {
-    output[col] = saturate_cast&lt;uchar&gt;( current[col] * 5 - (current[col - offsetx] + current[col + offsetx] + previous[col] + next[col]));
-
-}
-</code></pre><p>  }</p>
-</li>
-</ul>
-</li>
-</ol>
-<pre><code>    double cost = (getTickCount() - t) / getTickFrequency();
-    printf(&quot;time spend:%.2f&quot;,cost);
-    namedWindow(&quot;contrast image demo&quot;, CV_WINDOW_AUTOSIZE);
-    imshow(&quot;contrast image demo&quot;,dst);
-
-    waitKey(0);
-    return 0;
-}
-</code></pre><ul>
-<li>使用filter2D</li>
-</ul>
 <pre><code>#include&lt;opencv2/opencv.hpp&gt;
 #include&lt;iostream&gt;
 #include&lt;math.h&gt;
@@ -376,7 +396,58 @@ using namespace cv;
 
 int main(int argc, char ** argv) {
     Mat src, dst;
-    src = imread(&quot;D:/documents/pictures/test1.jpg&quot;);
+    src = imread(&quot;D:/documents/pictures/test.jpg&quot;);
+    if (!src.data) {
+        printf(&quot;could not open image\n&quot;);
+        return -1;
+    }
+    namedWindow(&quot;input image&quot;, CV_WINDOW_AUTOSIZE);
+    imshow(&quot;input image&quot;,src);
+
+    int cols = (src.cols-1)*src.channels();//通道数
+    int offsetx = src.channels();
+    int rows = src.rows;
+
+    dst = Mat::zeros(src.size(),src.type());//类型大小与输入图像一致
+
+    double t = getTickCount();
+
+    for (int row = 1; row &lt; (rows - 1); row++) {
+
+        const uchar* previous = src.ptr&lt;uchar&gt;(row - 1);
+        const uchar* current = src.ptr&lt;uchar&gt;(row);
+        const uchar* next = src.ptr&lt;uchar&gt;(row + 1);
+
+        uchar* output = dst.ptr&lt;uchar&gt;(row);
+        for (int col = offsetx; col &lt; cols; col++) {
+            output[col] = saturate_cast&lt;uchar&gt;( current[col] * 5 - (current[col - offsetx] + current[col + offsetx] + previous[col] + next[col]));
+
+        }
+    }
+
+    double cost = (getTickCount() - t) / getTickFrequency();
+    printf(&quot;time spend:%.2f&quot;,cost);
+    namedWindow(&quot;contrast image demo&quot;, CV_WINDOW_AUTOSIZE);
+    imshow(&quot;contrast image demo&quot;,dst);
+
+    waitKey(0);
+    return 0;
+}
+</code></pre></li>
+<li><p>使用filter2D</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>#include&lt;opencv2/opencv.hpp&gt;
+#include&lt;iostream&gt;
+#include&lt;math.h&gt;
+
+using namespace cv;
+
+int main(int argc, char ** argv) {
+    Mat src, dst;
+    src = imread(&quot;D:/documents/pictures/test.jpg&quot;);
     if (!src.data) {
         printf(&quot;could not open image\n&quot;);
         return -1;
@@ -415,6 +486,16 @@ int main(int argc, char ** argv) {
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/图像掩膜/" rel="tag"># 图像掩膜</a>
+          
+            <a href="/tags/filter2D/" rel="tag"># filter2D</a>
+          
+            <a href="/tags/饱和度/" rel="tag"># 饱和度</a>
+          
+        </div>
+      
 
       
       
@@ -424,8 +505,8 @@ int main(int argc, char ** argv) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/13/opencv环境搭建/" rel="next" title="OpenCV环境搭建">
-                <i class="fa fa-chevron-left"></i> OpenCV环境搭建
+              <a href="/2019/01/15/OpenCV学习笔记_1/" rel="next" title="OpenCV学习笔记_1">
+                <i class="fa fa-chevron-left"></i> OpenCV学习笔记_1
               </a>
             
           </div>
@@ -433,10 +514,6 @@ int main(int argc, char ** argv) {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/15/OpenCV学习笔记_1/" rel="prev" title="OpenCV学习笔记_1">
-                OpenCV学习笔记_1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -502,6 +579,8 @@ int main(int argc, char ** argv) {
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Passwordxx">
+            
               <p class="site-author-name" itemprop="name">Passwordxx</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
@@ -520,13 +599,47 @@ int main(int argc, char ** argv) {
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhixingyu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zyxing25@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -588,7 +701,7 @@ int main(int argc, char ** argv) {
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -687,6 +800,13 @@ int main(int argc, char ** argv) {
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
