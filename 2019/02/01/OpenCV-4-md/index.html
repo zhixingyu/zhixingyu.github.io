@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="绘制图像亮度与对比度 使用cv::Point与cv::Scalar 绘制线、矩形、圆、椭圆等基本几何形状 随机生成与绘制文本  使用cv::Point与cv::Scalar Point表示2D平面上一个点x,y  123Point p;p.x = 10;p.y = 8; 或者p = Point(10, 8);  Scalar表示四个元素的向量  Salar(a,b,c);//a = blue,b=">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCV_4.md">
+<meta property="og:url" content="http://yoursite.com/2019/02/01/OpenCV-4-md/index.html">
+<meta property="og:site_name" content="Hexo_zhixingyu">
+<meta property="og:description" content="绘制图像亮度与对比度 使用cv::Point与cv::Scalar 绘制线、矩形、圆、椭圆等基本几何形状 随机生成与绘制文本  使用cv::Point与cv::Scalar Point表示2D平面上一个点x,y  123Point p;p.x = 10;p.y = 8; 或者p = Point(10, 8);  Scalar表示四个元素的向量  Salar(a,b,c);//a = blue,b=">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/02/01/OpenCV-4-md/OpenCV学习笔记-4/a.png">
+<meta property="og:updated_time" content="2019-02-07T14:37:11.410Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenCV_4.md">
+<meta name="twitter:description" content="绘制图像亮度与对比度 使用cv::Point与cv::Scalar 绘制线、矩形、圆、椭圆等基本几何形状 随机生成与绘制文本  使用cv::Point与cv::Scalar Point表示2D平面上一个点x,y  123Point p;p.x = 10;p.y = 8; 或者p = Point(10, 8);  Scalar表示四个元素的向量  Salar(a,b,c);//a = blue,b=">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/01/OpenCV-4-md/OpenCV学习笔记-4/a.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/01/OpenCV-4-md/">
+
+
+
+
+
+  <title>OpenCV_4.md | Hexo_zhixingyu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo_zhixingyu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-总览">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            总览
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/01/OpenCV-4-md/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Passwordxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo_zhixingyu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenCV_4.md</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-01T22:10:10+08:00">
+                2019-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="绘制图像亮度与对比度"><a href="#绘制图像亮度与对比度" class="headerlink" title="绘制图像亮度与对比度"></a>绘制图像亮度与对比度</h2><ul>
+<li>使用cv::Point与cv::Scalar</li>
+<li>绘制线、矩形、圆、椭圆等基本几何形状</li>
+<li>随机生成与绘制文本</li>
+</ul>
+<h3 id="使用cv-Point与cv-Scalar"><a href="#使用cv-Point与cv-Scalar" class="headerlink" title="使用cv::Point与cv::Scalar"></a>使用cv::Point与cv::Scalar</h3><ul>
+<li>Point表示2D平面上一个点x,y</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Point p;</span><br><span class="line">p.x = <span class="number">10</span>;</span><br><span class="line">p.y = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+<p>或者<code>p = Point(10, 8);</code></p>
+<ul>
+<li><p>Scalar表示四个元素的向量</p>
+<ul>
+<li><code>Salar(a,b,c);//a = blue,b=green,c=red</code>表示RGB三个通道</li>
+</ul>
+</li>
+</ul>
+<h3 id="绘制线、矩形、圆、椭圆等基本几何形状"><a href="#绘制线、矩形、圆、椭圆等基本几何形状" class="headerlink" title="绘制线、矩形、圆、椭圆等基本几何形状"></a>绘制线、矩形、圆、椭圆等基本几何形状</h3><ul>
+<li>画线<code>cv::line(LINE_4\LINE_8\LINE_AA)</code>LINE_AA表示反锯齿</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyLine</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Point p1 = Point(<span class="number">20</span>, <span class="number">30</span>);</span><br><span class="line">	Point p2;</span><br><span class="line">	p2.x = <span class="number">300</span>;</span><br><span class="line">	p2.y = <span class="number">300</span>;</span><br><span class="line">	Scalar color = Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>);</span><br><span class="line">	line(src, p1, p2, color, <span class="number">1</span>, LINE_8);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>画椭圆<code>cv::ellipse</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ELLIPSE</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Scalar color = Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>);</span><br><span class="line">	ellipse(src, Point(src.cols / <span class="number">2</span>, src.rows / <span class="number">2</span>), Size(src.cols / <span class="number">4</span>, src.rows / <span class="number">8</span>), <span class="number">90</span>, <span class="number">0</span>, <span class="number">360</span>, color, <span class="number">2</span>, LINE_8);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>画矩形<code>cv::rectangle</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Rec</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Rect rect = Rect(<span class="number">200</span>, <span class="number">100</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">	Scalar color = Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>);</span><br><span class="line">	rectangle(src, rect, color, <span class="number">2</span>, LINE_AA);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>画圆<code>cv::circle</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Circle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Scalar color = Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>);</span><br><span class="line">	Point center = Point(src.cols / <span class="number">2</span>, src.rows / <span class="number">2</span>);</span><br><span class="line">	circle(src,center, <span class="number">150</span>, color, <span class="number">2</span>, <span class="number">8</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>画填充<code>cv::fillPoly</code><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fill</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Point pt[<span class="number">1</span>][<span class="number">5</span>];</span><br><span class="line">	pt[<span class="number">0</span>][<span class="number">0</span>] = Point(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line">	pt[<span class="number">0</span>][<span class="number">1</span>] = Point(<span class="number">100</span>, <span class="number">200</span>);</span><br><span class="line">	pt[<span class="number">0</span>][<span class="number">2</span>] = Point(<span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line">	pt[<span class="number">0</span>][<span class="number">3</span>] = Point(<span class="number">200</span>, <span class="number">100</span>);</span><br><span class="line">	pt[<span class="number">0</span>][<span class="number">4</span>] = Point(<span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> Point * ppt[<span class="number">1</span>] = &#123; pt[<span class="number">0</span>] &#125;;</span><br><span class="line">	<span class="keyword">int</span> npt[<span class="number">1</span>] = &#123;<span class="number">6</span>&#125;;</span><br><span class="line">	Scalar color = Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>);</span><br><span class="line">	fillPoly(src, ppt, npt, <span class="number">1</span>, color, <span class="number">8</span>);<span class="comment">//轮廓数1</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="随机生成与绘制文本"><a href="#随机生成与绘制文本" class="headerlink" title="随机生成与绘制文本"></a>随机生成与绘制文本</h3><ul>
+<li><p>随机数生成<code>cv::RNG</code></p>
+<ul>
+<li>生成高斯随机数<code>gaussian(double sigma)</code></li>
+<li>生成正态分布随机数<code>uniform(int a, int b)</code></li>
+</ul>
+</li>
+<li><p>代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">random</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function">RNG <span class="title">rng</span><span class="params">(<span class="number">12345</span>)</span></span>;</span><br><span class="line">	Point pt1;</span><br><span class="line">	Point pt2;</span><br><span class="line">	Mat bg = Mat::zeros(src.size(), src.type());</span><br><span class="line">	namedWindow(<span class="string">"random"</span>, CV_WINDOW_AUTOSIZE);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">		pt1.x = rng.uniform(<span class="number">0</span>, src.cols);</span><br><span class="line">		pt2.x = rng.uniform(<span class="number">0</span>, src.cols);</span><br><span class="line">		pt1.y = rng.uniform(<span class="number">0</span>, src.rows);</span><br><span class="line">		pt2.y = rng.uniform(<span class="number">0</span>, src.rows);</span><br><span class="line"></span><br><span class="line">		Scalar color = Scalar(rng.uniform(<span class="number">0</span>, <span class="number">255</span>), rng.uniform(<span class="number">0</span>, <span class="number">255</span>), rng.uniform(<span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line">		<span class="keyword">if</span> (waitKey(<span class="number">50</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		line(bg, pt1, pt2, color, <span class="number">1</span>, <span class="number">8</span>);</span><br><span class="line">		imshow(<span class="string">"random"</span>, bg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现结果<br><img src="/2019/02/01/OpenCV-4-md/OpenCV学习笔记-4/a.png" alt="随机生成与绘制文本"></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/29/OpenCV学习笔记-3/" rel="next" title="OpenCV学习笔记_3">
+                <i class="fa fa-chevron-left"></i> OpenCV学习笔记_3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Passwordxx">
+            
+              <p class="site-author-name" itemprop="name">Passwordxx</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhixingyu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zyxing25@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://studentke.github.io/" title="Student" target="_blank">Student</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制图像亮度与对比度"><span class="nav-number">1.</span> <span class="nav-text">绘制图像亮度与对比度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用cv-Point与cv-Scalar"><span class="nav-number">1.1.</span> <span class="nav-text">使用cv::Point与cv::Scalar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制线、矩形、圆、椭圆等基本几何形状"><span class="nav-number">1.2.</span> <span class="nav-text">绘制线、矩形、圆、椭圆等基本几何形状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机生成与绘制文本"><span class="nav-number">1.3.</span> <span class="nav-text">随机生成与绘制文本</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Passwordxx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

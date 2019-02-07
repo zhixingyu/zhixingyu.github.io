@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="imread,cvtColor,imwrite,">
+  <meta name="keywords" content="亮度,对比度,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="加载、修改、保存图像 加载图像cv::imread 修改图像cv::cvtColor 保存图像cv::imwrite   加载图像cv::imread  imread功能是加载图像文件成为一个Mat对象，其中第一个参数表示图像文件名称。 第二个参数表示加载图像的类型，支持常见的三个参数值。 IMREAD_UNCHANGED(&amp;lt;0)表示加载原图，不作任何改变。 IMREAD_GRAYSCALE">
-<meta name="keywords" content="imread,cvtColor,imwrite">
+<meta name="description" content="调整图像亮度与对比度 理论 代码实现  理论 图像变换可以看做如下：  像素操作—点操作（调整图像亮度与对比度）  邻域操作—区域（卷积，整体特征提取，模式识别，焦点检测，平滑模糊等）    g(i,j)=αf(i,j)+β，其中α&amp;gt;0,β是增益变量，越亮越向白色靠拢，增益变量越大；对比度是像素之间的差值，插值越大，对比越强烈。  重要的API：  Mat::zeros(image.size">
+<meta name="keywords" content="亮度,对比度">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV学习笔记_1">
-<meta property="og:url" content="http://yoursite.com/2019/01/15/OpenCV学习笔记_1/index.html">
+<meta property="og:title" content="OpenCV学习笔记_3">
+<meta property="og:url" content="http://yoursite.com/2019/01/29/OpenCV学习笔记-3/index.html">
 <meta property="og:site_name" content="Hexo_zhixingyu">
-<meta property="og:description" content="加载、修改、保存图像 加载图像cv::imread 修改图像cv::cvtColor 保存图像cv::imwrite   加载图像cv::imread  imread功能是加载图像文件成为一个Mat对象，其中第一个参数表示图像文件名称。 第二个参数表示加载图像的类型，支持常见的三个参数值。 IMREAD_UNCHANGED(&amp;lt;0)表示加载原图，不作任何改变。 IMREAD_GRAYSCALE">
+<meta property="og:description" content="调整图像亮度与对比度 理论 代码实现  理论 图像变换可以看做如下：  像素操作—点操作（调整图像亮度与对比度）  邻域操作—区域（卷积，整体特征提取，模式识别，焦点检测，平滑模糊等）    g(i,j)=αf(i,j)+β，其中α&amp;gt;0,β是增益变量，越亮越向白色靠拢，增益变量越大；对比度是像素之间的差值，插值越大，对比越强烈。  重要的API：  Mat::zeros(image.size">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-16T13:47:58.909Z">
+<meta property="og:updated_time" content="2019-01-29T06:13:09.945Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV学习笔记_1">
-<meta name="twitter:description" content="加载、修改、保存图像 加载图像cv::imread 修改图像cv::cvtColor 保存图像cv::imwrite   加载图像cv::imread  imread功能是加载图像文件成为一个Mat对象，其中第一个参数表示图像文件名称。 第二个参数表示加载图像的类型，支持常见的三个参数值。 IMREAD_UNCHANGED(&amp;lt;0)表示加载原图，不作任何改变。 IMREAD_GRAYSCALE">
+<meta name="twitter:title" content="OpenCV学习笔记_3">
+<meta name="twitter:description" content="调整图像亮度与对比度 理论 代码实现  理论 图像变换可以看做如下：  像素操作—点操作（调整图像亮度与对比度）  邻域操作—区域（卷积，整体特征提取，模式识别，焦点检测，平滑模糊等）    g(i,j)=αf(i,j)+β，其中α&amp;gt;0,β是增益变量，越亮越向白色靠拢，增益变量越大；对比度是像素之间的差值，插值越大，对比越强烈。  重要的API：  Mat::zeros(image.size">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/15/OpenCV学习笔记_1/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/29/OpenCV学习笔记-3/">
 
 
 
 
 
-  <title>OpenCV学习笔记_1 | Hexo_zhixingyu</title>
+  <title>OpenCV学习笔记_3 | Hexo_zhixingyu</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/15/OpenCV学习笔记_1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/OpenCV学习笔记-3/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Passwordxx">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OpenCV学习笔记_1</h1>
+          <h1 class="post-title" itemprop="name headline">OpenCV学习笔记_3</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-15T20:39:55+08:00">
-                2019-01-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-29T13:09:28+08:00">
+                2019-01-29
               </time>
             
 
@@ -342,48 +342,30 @@
       
 
       
-        <h2 id="加载、修改、保存图像"><a href="#加载、修改、保存图像" class="headerlink" title="加载、修改、保存图像"></a>加载、修改、保存图像</h2><ul>
-<li>加载图像cv::imread</li>
-<li>修改图像cv::cvtColor</li>
-<li>保存图像cv::imwrite</li>
+        <h2 id="调整图像亮度与对比度"><a href="#调整图像亮度与对比度" class="headerlink" title="调整图像亮度与对比度"></a>调整图像亮度与对比度</h2><ul>
+<li>理论</li>
+<li>代码实现</li>
 </ul>
+<h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><ul>
+<li><p>图像变换可以看做如下：</p>
+<ul>
+<li><p>像素操作—点操作（调整图像亮度与对比度）</p>
+</li>
+<li><p>邻域操作—区域（卷积，整体特征提取，模式识别，焦点检测，平滑模糊等）</p>
+</li>
+</ul>
+</li>
+<li><p>g(i,j)=αf(i,j)+β，其中α&gt;0,β是增益变量，越亮越向白色靠拢，增益变量越大；对比度是像素之间的差值，插值越大，对比越强烈。</p>
+</li>
+<li><p>重要的API：</p>
 <ol>
-<li><p>加载图像cv::imread</p>
-<ul>
-<li>imread功能是加载图像文件成为一个Mat对象，其中第一个参数表示图像文件名称。</li>
-<li>第二个参数表示加载图像的类型，支持常见的三个参数值。</li>
-<li>IMREAD_UNCHANGED(&lt;0)表示加载原图，不作任何改变。</li>
-<li>IMREAD_GRAYSCALE(0)表示把原图作为灰度图像加载进来。</li>
-<li>IMREAD_COLOR(&gt;0)表示把原图作为RGB图像加载进来。</li>
-<li>openCV支持JPG、PNG、TIFF等常见格式图像文件加载。</li>
-</ul>
-</li>
-<li><p>显示图像cv::namedWindow与cv::imshow</p>
-<ul>
-<li>namedWindow功能时创建一个OpenCV窗口，由OpenCV自动获取与释放，无需手动销毁。</li>
-<li>常用：<code>namedWindow(&quot;Window Title&quot;,WINDOW_AUTOSIZE)</code>。</li>
-<li>WINDOW_AUTOSIZE自动根据图像大小显示窗口大小，不能认为改变窗口大小。</li>
-<li>WINDOW_NORMAL跟QT集成时，允许修改窗口大小。</li>
-<li>imshow根据窗口名称显示图像到指定窗口上去，第一个参数是窗口名称，第二个参数是Mat对象。</li>
-</ul>
-</li>
-<li><p>修改图像cv::cvtColor</p>
-<ul>
-<li>cvtColor是把图像从一个色彩空间转换到另一个色彩空间，三个参数：源图像，转换之后的图像，源和目标色彩空间（COLOR_BGR2HLS、COLOR_BGR2GRAY）</li>
-<li><code>cvtColor(image,gray_image,COLOR_BGR2GRAY)</code></li>
-</ul>
-</li>
-<li><p>保存图像cv::imwrite</p>
-<ul>
-<li>保存图像文件到指定目录。</li>
-<li>只有8位，16位的PNG、JPG、Tiff文件格式而且是单通道或者三通道的BGR的图像才可以通过这种方式保存。</li>
-<li>保存JGP格式的时候可以保存透明通道的图片。</li>
-<li>可以指定压缩参数。</li>
-</ul>
-</li>
-<li>代码<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Mat src = imread(<span class="string">"D:/Documents/Pictures/test1.jpg"</span>);</span><br><span class="line">	<span class="keyword">if</span> (src.empty()) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"could not open\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">namedWindow(<span class="string">"test opencv set up"</span>,CV_WINDOW_AUTOSIZE);</span><br><span class="line">imshow(<span class="string">"test opencv set up"</span>,src);</span><br><span class="line"></span><br><span class="line">namedWindow(<span class="string">"output windows"</span>,CV_WINDOW_AUTOSIZE);</span><br><span class="line">Mat output_image;</span><br><span class="line">cvtColor(src, output_image,CV_BGR2HLS);</span><br><span class="line">imshow(<span class="string">"output windows"</span>,output_image);</span><br><span class="line">	</span><br><span class="line">imwrite(<span class="string">"D:/Documents/Pictures/test2.jpg"</span>,output_image);</span><br><span class="line">waitKey(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li><code>Mat::zeros(image.size(), image.type())</code>：创建一张跟源图像大小类型一样的空白图像，像素值均初始化为0；</li>
+<li><code>saturate_cast&lt;uchar&gt;(value)</code>：确保像素值大小范围为0~255；</li>
+<li><code>Mat.at&lt;Vec3b&gt;(x, y)[index] = value</code>：给每个通道赋值。</li>
 </ol>
+</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">//调整图像亮度与对比度</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span> </span>&#123;</span><br><span class="line">	Mat dst = imread(<span class="string">"D:/Documents/Pictures/test1.jpg"</span>);</span><br><span class="line">	<span class="keyword">if</span> (!dst.data) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"could not open image ....."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	namedWindow(<span class="string">"input image"</span>, CV_WINDOW_AUTOSIZE);</span><br><span class="line">	imshow(<span class="string">"input image"</span>, dst);</span><br><span class="line"></span><br><span class="line">   <span class="comment">// cvtColor(dst, dst, CV_BGR2GRAY);测试单通道图像</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> height = dst.rows;</span><br><span class="line">	<span class="keyword">int</span> width = dst.cols;</span><br><span class="line">	Mat dst1;</span><br><span class="line">	dst1 = Mat::zeros(dst.size(), dst.type());</span><br><span class="line">	<span class="keyword">float</span> alpha = <span class="number">1.2</span>;</span><br><span class="line">	<span class="keyword">float</span> beta = <span class="number">30</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> row = <span class="number">0</span>; row &lt; height; row++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> col = <span class="number">0</span>; col &lt; width; col++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (dst.channels() == <span class="number">3</span>) &#123;</span><br><span class="line">				<span class="keyword">float</span> b = dst.at&lt;Vec3b&gt;(row, col)[<span class="number">0</span>];</span><br><span class="line">				<span class="keyword">float</span> g = dst.at&lt;Vec3b&gt;(row, col)[<span class="number">1</span>];</span><br><span class="line">				<span class="keyword">float</span> r = dst.at&lt;Vec3b&gt;(row, col)[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">				dst1.at&lt;Vec3b&gt;(row, col)[<span class="number">0</span>] = saturate_cast&lt;uchar&gt;(b*alpha + beta);</span><br><span class="line"></span><br><span class="line">				dst1.at&lt;Vec3b&gt;(row, col)[<span class="number">1</span>] = saturate_cast&lt;uchar&gt;(g*alpha + beta);</span><br><span class="line"></span><br><span class="line">				dst1.at&lt;Vec3b&gt;(row, col)[<span class="number">2</span>] = saturate_cast&lt;uchar&gt;(r*alpha + beta);</span><br><span class="line">					</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">float</span> v = dst.at&lt;uchar&gt;(row, col);</span><br><span class="line">				dst1.at&lt;uchar&gt;(row, col) = saturate_cast&lt;uchar&gt;(v*alpha + beta);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	namedWindow(<span class="string">"output"</span>, CV_WINDOW_AUTOSIZE);</span><br><span class="line">	imshow(<span class="string">"output"</span>, dst1);</span><br><span class="line"></span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -401,11 +383,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/imread/" rel="tag"># imread</a>
+            <a href="/tags/亮度/" rel="tag"># 亮度</a>
           
-            <a href="/tags/cvtColor/" rel="tag"># cvtColor</a>
-          
-            <a href="/tags/imwrite/" rel="tag"># imwrite</a>
+            <a href="/tags/对比度/" rel="tag"># 对比度</a>
           
         </div>
       
@@ -418,8 +398,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/15/OpenCV学习笔记_2/" rel="next" title="OpenCV学习笔记_2">
-                <i class="fa fa-chevron-left"></i> OpenCV学习笔记_2
+              <a href="/2019/01/29/test/" rel="next" title="test">
+                <i class="fa fa-chevron-left"></i> test
               </a>
             
           </div>
@@ -428,8 +408,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/29/test/" rel="prev" title="test">
-                test <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/01/OpenCV-4-md/" rel="prev" title="OpenCV_4.md">
+                OpenCV_4.md <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -594,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#加载、修改、保存图像"><span class="nav-number">1.</span> <span class="nav-text">加载、修改、保存图像</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#调整图像亮度与对比度"><span class="nav-number">1.</span> <span class="nav-text">调整图像亮度与对比度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#理论"><span class="nav-number">1.1.</span> <span class="nav-text">理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
