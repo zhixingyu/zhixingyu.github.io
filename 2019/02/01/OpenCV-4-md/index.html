@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="绘制图像亮度与对比度 使用cv::Point与cv::Scalar 绘制线、矩形、圆、椭圆等基本几何形状 随机生成与绘制文本  使用cv::Point与cv::Scalar Point表示2D平面上一个点x,y  123Point p;p.x = 10;p.y = 8; 或者p = Point(10, 8);  Scalar表示四个元素的向量  Salar(a,b,c);//a = blue,b=">
+<meta name="description" content="绘制形状与文字 使用cv::Point与cv::Scalar 绘制线、矩形、圆、椭圆等基本几何形状 随机生成与绘制文本  使用cv::Point与cv::Scalar Point表示2D平面上一个点x,y  123Point p;p.x = 10;p.y = 8; 或者p = Point(10, 8);  Scalar表示四个元素的向量  Salar(a,b,c);//a = blue,b=gre">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV_4.md">
+<meta property="og:title" content="OpenCV学习笔记（4）.md">
 <meta property="og:url" content="http://yoursite.com/2019/02/01/OpenCV-4-md/index.html">
 <meta property="og:site_name" content="Hexo_zhixingyu">
-<meta property="og:description" content="绘制图像亮度与对比度 使用cv::Point与cv::Scalar 绘制线、矩形、圆、椭圆等基本几何形状 随机生成与绘制文本  使用cv::Point与cv::Scalar Point表示2D平面上一个点x,y  123Point p;p.x = 10;p.y = 8; 或者p = Point(10, 8);  Scalar表示四个元素的向量  Salar(a,b,c);//a = blue,b=">
+<meta property="og:description" content="绘制形状与文字 使用cv::Point与cv::Scalar 绘制线、矩形、圆、椭圆等基本几何形状 随机生成与绘制文本  使用cv::Point与cv::Scalar Point表示2D平面上一个点x,y  123Point p;p.x = 10;p.y = 8; 或者p = Point(10, 8);  Scalar表示四个元素的向量  Salar(a,b,c);//a = blue,b=gre">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/02/01/OpenCV-4-md/OpenCV学习笔记-4/a.png">
-<meta property="og:updated_time" content="2019-02-07T14:37:11.410Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/01/OpenCV-4-md/a.png">
+<meta property="og:updated_time" content="2019-02-07T14:48:40.109Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV_4.md">
-<meta name="twitter:description" content="绘制图像亮度与对比度 使用cv::Point与cv::Scalar 绘制线、矩形、圆、椭圆等基本几何形状 随机生成与绘制文本  使用cv::Point与cv::Scalar Point表示2D平面上一个点x,y  123Point p;p.x = 10;p.y = 8; 或者p = Point(10, 8);  Scalar表示四个元素的向量  Salar(a,b,c);//a = blue,b=">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/01/OpenCV-4-md/OpenCV学习笔记-4/a.png">
+<meta name="twitter:title" content="OpenCV学习笔记（4）.md">
+<meta name="twitter:description" content="绘制形状与文字 使用cv::Point与cv::Scalar 绘制线、矩形、圆、椭圆等基本几何形状 随机生成与绘制文本  使用cv::Point与cv::Scalar Point表示2D平面上一个点x,y  123Point p;p.x = 10;p.y = 8; 或者p = Point(10, 8);  Scalar表示四个元素的向量  Salar(a,b,c);//a = blue,b=gre">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/01/OpenCV-4-md/a.png">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>OpenCV_4.md | Hexo_zhixingyu</title>
+  <title>OpenCV学习笔记（4）.md | Hexo_zhixingyu</title>
   
 
 
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OpenCV_4.md</h1>
+          <h1 class="post-title" itemprop="name headline">OpenCV学习笔记（4）.md</h1>
         
 
         <div class="post-meta">
@@ -321,7 +321,7 @@
       
 
       
-        <h2 id="绘制图像亮度与对比度"><a href="#绘制图像亮度与对比度" class="headerlink" title="绘制图像亮度与对比度"></a>绘制图像亮度与对比度</h2><ul>
+        <h2 id="绘制形状与文字"><a href="#绘制形状与文字" class="headerlink" title="绘制形状与文字"></a>绘制形状与文字</h2><ul>
 <li>使用cv::Point与cv::Scalar</li>
 <li>绘制线、矩形、圆、椭圆等基本几何形状</li>
 <li>随机生成与绘制文本</li>
@@ -368,9 +368,10 @@
 <li><p>代码</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">random</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function">RNG <span class="title">rng</span><span class="params">(<span class="number">12345</span>)</span></span>;</span><br><span class="line">	Point pt1;</span><br><span class="line">	Point pt2;</span><br><span class="line">	Mat bg = Mat::zeros(src.size(), src.type());</span><br><span class="line">	namedWindow(<span class="string">"random"</span>, CV_WINDOW_AUTOSIZE);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">		pt1.x = rng.uniform(<span class="number">0</span>, src.cols);</span><br><span class="line">		pt2.x = rng.uniform(<span class="number">0</span>, src.cols);</span><br><span class="line">		pt1.y = rng.uniform(<span class="number">0</span>, src.rows);</span><br><span class="line">		pt2.y = rng.uniform(<span class="number">0</span>, src.rows);</span><br><span class="line"></span><br><span class="line">		Scalar color = Scalar(rng.uniform(<span class="number">0</span>, <span class="number">255</span>), rng.uniform(<span class="number">0</span>, <span class="number">255</span>), rng.uniform(<span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line">		<span class="keyword">if</span> (waitKey(<span class="number">50</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		line(bg, pt1, pt2, color, <span class="number">1</span>, <span class="number">8</span>);</span><br><span class="line">		imshow(<span class="string">"random"</span>, bg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>实现结果<br><img src="/2019/02/01/OpenCV-4-md/OpenCV学习笔记-4/a.png" alt="随机生成与绘制文本"></p>
+<li><p>实现结果</p>
 </li>
 </ul>
+<p><img src="/2019/02/01/OpenCV-4-md/a.png" alt="随机生成与绘制文本"></p>
 
       
     </div>
@@ -567,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制图像亮度与对比度"><span class="nav-number">1.</span> <span class="nav-text">绘制图像亮度与对比度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用cv-Point与cv-Scalar"><span class="nav-number">1.1.</span> <span class="nav-text">使用cv::Point与cv::Scalar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制线、矩形、圆、椭圆等基本几何形状"><span class="nav-number">1.2.</span> <span class="nav-text">绘制线、矩形、圆、椭圆等基本几何形状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机生成与绘制文本"><span class="nav-number">1.3.</span> <span class="nav-text">随机生成与绘制文本</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制形状与文字"><span class="nav-number">1.</span> <span class="nav-text">绘制形状与文字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用cv-Point与cv-Scalar"><span class="nav-number">1.1.</span> <span class="nav-text">使用cv::Point与cv::Scalar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制线、矩形、圆、椭圆等基本几何形状"><span class="nav-number">1.2.</span> <span class="nav-text">绘制线、矩形、圆、椭圆等基本几何形状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机生成与绘制文本"><span class="nav-number">1.3.</span> <span class="nav-text">随机生成与绘制文本</span></a></li></ol></li></ol></div>
             
 
           </div>
