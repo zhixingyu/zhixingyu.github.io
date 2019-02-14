@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="OpenCV3.1.0,vs2015,">
+  <meta name="keywords" content="均值模糊,高斯模糊,">
 
 
 
@@ -79,15 +79,24 @@
 
 
 
-<meta name="keywords" content="OpenCV3.1.0,vs2015">
+<meta name="description" content="模糊图像 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
+<meta name="keywords" content="均值模糊,高斯模糊">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV环境搭建">
-<meta property="og:url" content="http://yoursite.com/2019/01/13/opencv环境搭建/index.html">
+<meta property="og:title" content="OpenCV_5">
+<meta property="og:url" content="http://yoursite.com/2019/02/14/OpenCV-5/index.html">
 <meta property="og:site_name" content="Hexo_zhixingyu">
+<meta property="og:description" content="模糊图像 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-16T10:31:08.619Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/one.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/two.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/three.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/four.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/five.png">
+<meta property="og:updated_time" content="2019-02-14T08:30:58.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV环境搭建">
+<meta name="twitter:title" content="OpenCV_5">
+<meta name="twitter:description" content="模糊图像 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/14/OpenCV-5/one.png">
 
 
 
@@ -117,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/13/opencv环境搭建/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/14/OpenCV-5/">
 
 
 
 
 
-  <title>OpenCV环境搭建 | Hexo_zhixingyu</title>
+  <title>OpenCV_5 | Hexo_zhixingyu</title>
   
 
 
@@ -250,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/13/opencv环境搭建/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/14/OpenCV-5/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Passwordxx">
@@ -267,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OpenCV环境搭建</h1>
+          <h1 class="post-title" itemprop="name headline">OpenCV_5</h1>
         
 
         <div class="post-meta">
@@ -279,8 +288,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-13T20:39:55+08:00">
-                2019-01-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-14T10:54:12+08:00">
+                2019-02-14
               </time>
             
 
@@ -339,7 +348,38 @@
       
 
       
-        
+        <h2 id="模糊图像"><a href="#模糊图像" class="headerlink" title="模糊图像"></a>模糊图像</h2><ul>
+<li>模糊原理</li>
+<li>代码</li>
+</ul>
+<h3 id="模糊原理"><a href="#模糊原理" class="headerlink" title="模糊原理"></a>模糊原理</h3><ul>
+<li>Smooth/Blur是图像中最简单和常用的操作之一</li>
+<li>使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。</li>
+<li>使用Smooth/Blur操作其背后是数学的卷积计算<br><img src="/2019/02/14/OpenCV-5/one.png" alt=""></li>
+<li><p>通常用这些卷积算子计算都是线性操作，所以又叫线性滤波</p>
+</li>
+<li><p><img src="/2019/02/14/OpenCV-5/two.png" alt=""></p>
+<ul>
+<li><p>假设有6x6的图像像素点矩阵。</p>
+</li>
+<li><p>卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色的每个像个像素点值之和取平均值赋给中心红色像素作为它卷积处理之后新的像素值。每次移动一个像素格。处理过程中遗漏了某些像素，无法对边缘像素进行处理，在OpenCV中，有针对这种情况的API。</p>
+</li>
+<li>边缘像素处理常用方法：向外扩张，临近点差值</li>
+</ul>
+</li>
+<li><p>归一化盒子滤波（均值滤波）<img src="/2019/02/14/OpenCV-5/three.png" alt=""></p>
+</li>
+<li><p>高斯滤波<img src="/2019/02/14/OpenCV-5/four.png" alt=""></p>
+</li>
+<li><p>相关API</p>
+<ul>
+<li>均值模糊<br>  <code>blur(Mat src, Mat dst, Size(xradius, yradius), Point(-1,-1));</code><br><img src="/2019/02/14/OpenCV-5/five.png" alt=""></li>
+<li>高斯模糊<br><code>GaussianBlur(Mat src, Mat dst, Size(11, 11), sigmax, sigmay);</code><br>其中Size（x, y）, x, y 必须是正数而且是奇数</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span> </span>&#123;</span><br><span class="line">	Mat src = imread(<span class="string">"D:/documents/pictures/test1.jpg"</span>);</span><br><span class="line">	Mat dst;</span><br><span class="line">	<span class="keyword">if</span> (!src.data) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"could not open"</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">char</span> input[] = <span class="string">"input image"</span>;</span><br><span class="line">	<span class="keyword">char</span> output[] = <span class="string">"output image"</span>;</span><br><span class="line">	namedWindow(input, CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(output, CV_WINDOW_AUTOSIZE);</span><br><span class="line"></span><br><span class="line">	imshow(input, src);</span><br><span class="line">	<span class="comment">/*                  x,y 3x3模糊 */</span></span><br><span class="line">	blur(src,dst, Size(<span class="number">5</span>,<span class="number">5</span>), Point(<span class="number">-1</span>,<span class="number">-1</span>));</span><br><span class="line">	imshow(output, dst);</span><br><span class="line">	Mat gas;</span><br><span class="line">	GaussianBlur(src, gas, Size(<span class="number">5</span>, <span class="number">5</span>), <span class="number">11</span>, <span class="number">11</span>);</span><br><span class="line">	imshow(<span class="string">"gausse"</span>, gas);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -356,9 +396,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OpenCV3-1-0/" rel="tag"># OpenCV3.1.0</a>
+            <a href="/tags/均值模糊/" rel="tag"># 均值模糊</a>
           
-            <a href="/tags/vs2015/" rel="tag"># vs2015</a>
+            <a href="/tags/高斯模糊/" rel="tag"># 高斯模糊</a>
           
         </div>
       
@@ -371,15 +411,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/02/01/OpenCV-4-md/" rel="next" title="OpenCV学习笔记（4）.md">
+                <i class="fa fa-chevron-left"></i> OpenCV学习笔记（4）.md
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/15/OpenCV学习笔记_2/" rel="prev" title="OpenCV学习笔记_2">
-                OpenCV学习笔记_2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -431,8 +471,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -524,6 +573,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模糊图像"><span class="nav-number">1.</span> <span class="nav-text">模糊图像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊原理"><span class="nav-number">1.1.</span> <span class="nav-text">模糊原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
