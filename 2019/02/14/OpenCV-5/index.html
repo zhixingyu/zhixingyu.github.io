@@ -79,23 +79,23 @@
 
 
 
-<meta name="description" content="模糊图像 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
+<meta name="description" content="图像模糊 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
 <meta name="keywords" content="均值模糊,高斯模糊">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV_5">
+<meta property="og:title" content="OpenCV学习笔记5_图像模糊">
 <meta property="og:url" content="http://yoursite.com/2019/02/14/OpenCV-5/index.html">
 <meta property="og:site_name" content="Hexo_zhixingyu">
-<meta property="og:description" content="模糊图像 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
+<meta property="og:description" content="图像模糊 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/one.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/two.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/three.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/four.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/five.png">
-<meta property="og:updated_time" content="2019-02-16T02:59:39.336Z">
+<meta property="og:updated_time" content="2019-02-16T03:16:58.860Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV_5">
-<meta name="twitter:description" content="模糊图像 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
+<meta name="twitter:title" content="OpenCV学习笔记5_图像模糊">
+<meta name="twitter:description" content="图像模糊 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
 <meta name="twitter:image" content="http://yoursite.com/2019/02/14/OpenCV-5/one.png">
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <title>OpenCV_5 | Hexo_zhixingyu</title>
+  <title>OpenCV学习笔记5_图像模糊 | Hexo_zhixingyu</title>
   
 
 
@@ -276,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OpenCV_5</h1>
+          <h1 class="post-title" itemprop="name headline">OpenCV学习笔记5_图像模糊</h1>
         
 
         <div class="post-meta">
@@ -348,7 +348,7 @@
       
 
       
-        <h2 id="模糊图像"><a href="#模糊图像" class="headerlink" title="模糊图像"></a>模糊图像</h2><ul>
+        <h2 id="图像模糊"><a href="#图像模糊" class="headerlink" title="图像模糊"></a>图像模糊</h2><ul>
 <li>模糊原理</li>
 <li>代码</li>
 </ul>
@@ -411,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/01/OpenCV-4-md/" rel="next" title="OpenCV学习笔记（4）.md">
-                <i class="fa fa-chevron-left"></i> OpenCV学习笔记（4）.md
+              <a href="/2019/02/01/OpenCV-4-md/" rel="next" title="OpenCV学习笔记4_绘制形状与文字">
+                <i class="fa fa-chevron-left"></i> OpenCV学习笔记4_绘制形状与文字
               </a>
             
           </div>
@@ -421,8 +421,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/16/OpenCV-6/" rel="prev" title="OpenCV_6">
-                OpenCV_6 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/16/OpenCV-6/" rel="prev" title="OpenCV学习笔记6_图像模糊（2）">
+                OpenCV学习笔记6_图像模糊（2） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -587,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模糊图像"><span class="nav-number">1.</span> <span class="nav-text">模糊图像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊原理"><span class="nav-number">1.1.</span> <span class="nav-text">模糊原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像模糊"><span class="nav-number">1.</span> <span class="nav-text">图像模糊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊原理"><span class="nav-number">1.1.</span> <span class="nav-text">模糊原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -621,6 +621,14 @@
 
 
 
+
+
+
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+  <span class="post-meta-divider">|</span> 
 
 
 
