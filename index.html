@@ -249,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/16/OpenCV-8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/OpenCV-8/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Passwordxx">
@@ -268,7 +268,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/16/OpenCV-8/" itemprop="url">OpenCV_8</a></h1>
+                <a class="post-title-link" href="/2019/02/17/OpenCV-8/" itemprop="url">OpenCV学习笔记8_形态学操作</a></h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-16T12:23:39+08:00">
-                2019-02-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-17T09:44:39+08:00">
+                2019-02-17
               </time>
             
 
@@ -290,6 +290,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenCV/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenCV</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -320,11 +342,183 @@
       
         
           
-          
-          
+          形态学操作
+开操作
+闭操作
+形态学梯度
+顶帽
+黑帽
+
+开操作
+先腐蚀后膨胀
+可以去掉小对象，假设对象是前景色，背景是黑色。
+API
+morphologyEx(src, dst, CV_MOP_BLACKHAT, kernel);
+Mat src:输入图像
+Mat dst:输出结果
+int OPT： 
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/02/16/OpenCV-8/#more" rel="contents">
+            <a class="btn" href="/2019/02/17/OpenCV-8/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/16/OpenCV-7/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Passwordxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo_zhixingyu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/16/OpenCV-7/" itemprop="url">OpenCV学习笔记7_膨胀与腐蚀</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-16T12:26:15+08:00">
+                2019-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenCV/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenCV</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          膨胀与腐蚀
+腐蚀
+膨胀
+代码
+
+膨胀
+形态学操作——膨胀
+图像形态学操作：基于形状的一系列图像处理操作的集合，主要是基于集合论基础上的形态学数学。
+形态学有四个基本操作：腐蚀、膨胀、开、闭。
+膨胀与腐蚀是图像处理中最常用的形态学操作手段。
+跟卷积操作类似，假设有图像A和结构元素B，结构元素B在A上面
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/16/OpenCV-7/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1511,7 +1705,7 @@ Mat.ptr(int i=0)获取像素矩阵的指针，索引i表示行数，从0行开�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1533,7 +1727,7 @@ Mat.ptr(int i=0)获取像素矩阵的指针，索引i表示行数，从0行开�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

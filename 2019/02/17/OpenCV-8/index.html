@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="均值模糊,高斯模糊,">
+  <meta name="keywords" content="open,close,形态学梯度,tophat,blackhat,">
 
 
 
@@ -79,24 +79,24 @@
 
 
 
-<meta name="description" content="图像模糊 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
-<meta name="keywords" content="均值模糊,高斯模糊">
+<meta name="description" content="形态学操作 开操作 闭操作 形态学梯度 顶帽 黑帽  开操作 先腐蚀后膨胀 可以去掉小对象，假设对象是前景色，背景是黑色。 API morphologyEx(src, dst, CV_MOP_BLACKHAT, kernel); Mat src:输入图像 Mat dst:输出结果 int OPT： 形态学操作类型CV_MOP_BLACKHAT/CV_MOP_OPEN/CV_MOP_CLOSE/CV">
+<meta name="keywords" content="open,close,形态学梯度,tophat,blackhat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV学习笔记5_图像模糊">
-<meta property="og:url" content="http://yoursite.com/2019/02/14/OpenCV-5/index.html">
+<meta property="og:title" content="OpenCV学习笔记8_形态学操作">
+<meta property="og:url" content="http://yoursite.com/2019/02/17/OpenCV-8/index.html">
 <meta property="og:site_name" content="Hexo_zhixingyu">
-<meta property="og:description" content="图像模糊 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
+<meta property="og:description" content="形态学操作 开操作 闭操作 形态学梯度 顶帽 黑帽  开操作 先腐蚀后膨胀 可以去掉小对象，假设对象是前景色，背景是黑色。 API morphologyEx(src, dst, CV_MOP_BLACKHAT, kernel); Mat src:输入图像 Mat dst:输出结果 int OPT： 形态学操作类型CV_MOP_BLACKHAT/CV_MOP_OPEN/CV_MOP_CLOSE/CV">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/one.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/two.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/three.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/four.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/14/OpenCV-5/five.png">
-<meta property="og:updated_time" content="2019-02-16T03:16:58.860Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/OpenCV-8/open.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/OpenCV-8/close.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/OpenCV-8/three.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/OpenCV-8/tophat.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/OpenCV-8/blackhat.png">
+<meta property="og:updated_time" content="2019-02-17T02:44:32.576Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV学习笔记5_图像模糊">
-<meta name="twitter:description" content="图像模糊 模糊原理 代码  模糊原理 Smooth/Blur是图像中最简单和常用的操作之一 使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。 使用Smooth/Blur操作其背后是数学的卷积计算 通常用这些卷积算子计算都是线性操作，所以又叫线性滤波    假设有6x6的图像像素点矩阵。  卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/14/OpenCV-5/one.png">
+<meta name="twitter:title" content="OpenCV学习笔记8_形态学操作">
+<meta name="twitter:description" content="形态学操作 开操作 闭操作 形态学梯度 顶帽 黑帽  开操作 先腐蚀后膨胀 可以去掉小对象，假设对象是前景色，背景是黑色。 API morphologyEx(src, dst, CV_MOP_BLACKHAT, kernel); Mat src:输入图像 Mat dst:输出结果 int OPT： 形态学操作类型CV_MOP_BLACKHAT/CV_MOP_OPEN/CV_MOP_CLOSE/CV">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/17/OpenCV-8/open.png">
 
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/14/OpenCV-5/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/17/OpenCV-8/">
 
 
 
 
 
-  <title>OpenCV学习笔记5_图像模糊 | Hexo_zhixingyu</title>
+  <title>OpenCV学习笔记8_形态学操作 | Hexo_zhixingyu</title>
   
 
 
@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/14/OpenCV-5/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/OpenCV-8/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Passwordxx">
@@ -276,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OpenCV学习笔记5_图像模糊</h1>
+          <h1 class="post-title" itemprop="name headline">OpenCV学习笔记8_形态学操作</h1>
         
 
         <div class="post-meta">
@@ -288,8 +288,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-14T10:54:12+08:00">
-                2019-02-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-17T09:44:39+08:00">
+                2019-02-17
               </time>
             
 
@@ -353,37 +353,54 @@
       
 
       
-        <h2 id="图像模糊"><a href="#图像模糊" class="headerlink" title="图像模糊"></a>图像模糊</h2><ul>
-<li>模糊原理</li>
+        <h2 id="形态学操作"><a href="#形态学操作" class="headerlink" title="形态学操作"></a>形态学操作</h2><ul>
+<li>开操作</li>
+<li>闭操作</li>
+<li>形态学梯度</li>
+<li>顶帽</li>
+<li>黑帽</li>
+</ul>
+<h3 id="开操作"><a href="#开操作" class="headerlink" title="开操作"></a>开操作</h3><ul>
+<li>先腐蚀后膨胀</li>
+<li>可以去掉小对象，假设对象是前景色，背景是黑色。<br><img src="/2019/02/17/OpenCV-8/open.png" alt=""></li>
+<li>API<ul>
+<li><code>morphologyEx(src, dst, CV_MOP_BLACKHAT, kernel);</code><ul>
+<li><code>Mat src</code>:输入图像</li>
+<li><code>Mat dst</code>:输出结果</li>
+<li><code>int OPT</code>： 形态学操作类型CV_MOP_BLACKHAT/CV_MOP_OPEN/CV_MOP_CLOSE/CV_MOP_TOPHAT</li>
+<li><code>Mat kernel</code>:结构元素</li>
+<li><code>int Iteration</code>:迭代次数，默认是1</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>代码</li>
 </ul>
-<h3 id="模糊原理"><a href="#模糊原理" class="headerlink" title="模糊原理"></a>模糊原理</h3><ul>
-<li>Smooth/Blur是图像中最简单和常用的操作之一</li>
-<li>使用该操作的原因之一就是为了给图像预处理时候降低噪声。比如：边缘提取算法通过高斯给图像降噪。</li>
-<li>使用Smooth/Blur操作其背后是数学的卷积计算<br><img src="/2019/02/14/OpenCV-5/one.png" alt=""></li>
-<li><p>通常用这些卷积算子计算都是线性操作，所以又叫线性滤波</p>
-</li>
-<li><p><img src="/2019/02/14/OpenCV-5/two.png" alt=""></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mat kernel = getStructuringElement(MORPH_RECT, Size(<span class="number">7</span>, <span class="number">7</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	morphologyEx(src, dst, CV_MOP_OPEN, kernel);<span class="comment">//开操作</span></span><br></pre></td></tr></table></figure>
+<h3 id="闭操作"><a href="#闭操作" class="headerlink" title="闭操作"></a>闭操作</h3><ul>
+<li>先膨胀后腐蚀</li>
+<li>可以填充小的洞，假设对象是前景色，背景是黑色。</li>
+</ul>
+<p><img src="/2019/02/17/OpenCV-8/close.png" alt=""></p>
 <ul>
-<li><p>假设有6x6的图像像素点矩阵。</p>
-</li>
-<li><p>卷积过程：6x6上面是个3x3的窗口，从左向右，从上向下移动，黄色的每个像个像素点值之和取平均值赋给中心红色像素作为它卷积处理之后新的像素值。每次移动一个像素格。处理过程中遗漏了某些像素，无法对边缘像素进行处理，在OpenCV中，有针对这种情况的API。</p>
-</li>
-<li>边缘像素处理常用方法：向外扩张，临近点差值</li>
+<li>代码</li>
 </ul>
-</li>
-<li><p>归一化盒子滤波（均值滤波）<img src="/2019/02/14/OpenCV-5/three.png" alt=""></p>
-</li>
-<li><p>高斯滤波<img src="/2019/02/14/OpenCV-5/four.png" alt=""></p>
-</li>
-<li><p>相关API</p>
-<ul>
-<li>均值模糊<br>  <code>blur(Mat src, Mat dst, Size(xradius, yradius), Point(-1,-1));</code><br><img src="/2019/02/14/OpenCV-5/five.png" alt=""></li>
-<li>高斯模糊<br><code>GaussianBlur(Mat src, Mat dst, Size(11, 11), sigmax, sigmay);</code><br>其中Size（x, y）, x, y 必须是正数而且是奇数</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mat kernel = getStructuringElement(MORPH_RECT, Size(<span class="number">7</span>, <span class="number">7</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	morphologyEx(src, dst, CV_MOP_CLOSE, kernel);<span class="comment">//闭操作</span></span><br></pre></td></tr></table></figure>
+<h3 id="形态学梯度"><a href="#形态学梯度" class="headerlink" title="形态学梯度"></a>形态学梯度</h3><ul>
+<li>膨胀减去腐蚀</li>
+<li>又称为基本梯度（其他还包括：内部梯度、方向梯度）<br><img src="/2019/02/17/OpenCV-8/three.png" alt=""></li>
+<li>代码</li>
 </ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mat kernel = getStructuringElement(MORPH_RECT, Size(<span class="number">5</span>, <span class="number">5</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	morphologyEx(src, dst, CV_MOP_GRADIENT, kernel);<span class="comment">//梯度操作</span></span><br></pre></td></tr></table></figure>
+<h3 id="顶帽"><a href="#顶帽" class="headerlink" title="顶帽"></a>顶帽</h3><ul>
+<li>顶帽是原图与开操作的差值图像<br><img src="/2019/02/17/OpenCV-8/tophat.png" alt=""></li>
+<li>代码<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mat kernel = getStructuringElement(MORPH_RECT, Size(<span class="number">11</span>, <span class="number">11</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	morphologyEx(src, dst, CV_MOP_TOPHAT, kernel);<span class="comment">//顶帽操作</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> ** argv)</span> </span>&#123;</span><br><span class="line">	Mat src = imread(<span class="string">"D:/documents/pictures/test1.jpg"</span>);</span><br><span class="line">	Mat dst;</span><br><span class="line">	<span class="keyword">if</span> (!src.data) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"could not open"</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">char</span> input[] = <span class="string">"input image"</span>;</span><br><span class="line">	<span class="keyword">char</span> output[] = <span class="string">"output image"</span>;</span><br><span class="line">	namedWindow(input, CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(output, CV_WINDOW_AUTOSIZE);</span><br><span class="line"></span><br><span class="line">	imshow(input, src);</span><br><span class="line">	<span class="comment">/*                  x,y 3x3模糊 */</span></span><br><span class="line">	blur(src,dst, Size(<span class="number">5</span>,<span class="number">5</span>), Point(<span class="number">-1</span>,<span class="number">-1</span>));</span><br><span class="line">	imshow(output, dst);</span><br><span class="line">	Mat gas;</span><br><span class="line">	GaussianBlur(src, gas, Size(<span class="number">5</span>, <span class="number">5</span>), <span class="number">11</span>, <span class="number">11</span>);</span><br><span class="line">	imshow(<span class="string">"gausse"</span>, gas);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="黑帽"><a href="#黑帽" class="headerlink" title="黑帽"></a>黑帽</h3><ul>
+<li>黑帽是闭操作图与原图的差值图像<br><img src="/2019/02/17/OpenCV-8/blackhat.png" alt=""></li>
+<li>代码<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mat kernel = getStructuringElement(MORPH_RECT, Size(<span class="number">11</span>, <span class="number">11</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	morphologyEx(src, dst, CV_MOP_BLACKHAT, kernel);<span class="comment">//黑帽操作</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -401,9 +418,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/均值模糊/" rel="tag"># 均值模糊</a>
+            <a href="/tags/open/" rel="tag"># open</a>
           
-            <a href="/tags/高斯模糊/" rel="tag"># 高斯模糊</a>
+            <a href="/tags/close/" rel="tag"># close</a>
+          
+            <a href="/tags/形态学梯度/" rel="tag"># 形态学梯度</a>
+          
+            <a href="/tags/tophat/" rel="tag"># tophat</a>
+          
+            <a href="/tags/blackhat/" rel="tag"># blackhat</a>
           
         </div>
       
@@ -416,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/01/OpenCV-4-md/" rel="next" title="OpenCV学习笔记4_绘制形状与文字">
-                <i class="fa fa-chevron-left"></i> OpenCV学习笔记4_绘制形状与文字
+              <a href="/2019/02/16/OpenCV-7/" rel="next" title="OpenCV学习笔记7_膨胀与腐蚀">
+                <i class="fa fa-chevron-left"></i> OpenCV学习笔记7_膨胀与腐蚀
               </a>
             
           </div>
@@ -425,10 +448,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/16/OpenCV-6/" rel="prev" title="OpenCV学习笔记6_图像模糊（2）">
-                OpenCV学习笔记6_图像模糊（2） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -592,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像模糊"><span class="nav-number">1.</span> <span class="nav-text">图像模糊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊原理"><span class="nav-number">1.1.</span> <span class="nav-text">模糊原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#形态学操作"><span class="nav-number">1.</span> <span class="nav-text">形态学操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开操作"><span class="nav-number">1.1.</span> <span class="nav-text">开操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭操作"><span class="nav-number">1.2.</span> <span class="nav-text">闭操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#形态学梯度"><span class="nav-number">1.3.</span> <span class="nav-text">形态学梯度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顶帽"><span class="nav-number">1.4.</span> <span class="nav-text">顶帽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#黑帽"><span class="nav-number">1.5.</span> <span class="nav-text">黑帽</span></a></li></ol></li></ol></div>
             
 
           </div>
