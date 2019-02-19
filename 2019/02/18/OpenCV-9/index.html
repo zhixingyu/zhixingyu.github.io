@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="提取水平元素,提取垂直元素,提取矩形元素,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="形态学操作应用-提取水平与垂直线 原理方法 实现步骤 代码演示  原理方法 图像形态学操作时候，可以通过自定义的结构元素实现结构元素对输入图像一些对象敏感、另外一些对象不敏感，这样就会让敏感的对象改变而不敏感的对象保留输出。通过使用两个最基本的形态学操作 – 膨胀与腐蚀，使用不同的结构元素实现对输入图像的操作、得到想要的结果。  膨胀，输出的像素值是结构元素覆盖下输入图像的最大像素值 腐蚀，输出的">
+<meta name="keywords" content="提取水平元素,提取垂直元素,提取矩形元素">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCV学习笔记9_形态学操作应用">
+<meta property="og:url" content="http://yoursite.com/2019/02/18/OpenCV-9/index.html">
+<meta property="og:site_name" content="Hexo_zhixingyu">
+<meta property="og:description" content="形态学操作应用-提取水平与垂直线 原理方法 实现步骤 代码演示  原理方法 图像形态学操作时候，可以通过自定义的结构元素实现结构元素对输入图像一些对象敏感、另外一些对象不敏感，这样就会让敏感的对象改变而不敏感的对象保留输出。通过使用两个最基本的形态学操作 – 膨胀与腐蚀，使用不同的结构元素实现对输入图像的操作、得到想要的结果。  膨胀，输出的像素值是结构元素覆盖下输入图像的最大像素值 腐蚀，输出的">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/02/18/OpenCV-9/one.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/18/OpenCV-9/two.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/18/OpenCV-9/three.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/18/OpenCV-9/six.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/18/OpenCV-9/seven.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/18/OpenCV-9/shuiping.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/18/OpenCV-9/chuizhi.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/18/OpenCV-9/five.png">
+<meta property="og:updated_time" content="2019-02-19T01:51:08.179Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenCV学习笔记9_形态学操作应用">
+<meta name="twitter:description" content="形态学操作应用-提取水平与垂直线 原理方法 实现步骤 代码演示  原理方法 图像形态学操作时候，可以通过自定义的结构元素实现结构元素对输入图像一些对象敏感、另外一些对象不敏感，这样就会让敏感的对象改变而不敏感的对象保留输出。通过使用两个最基本的形态学操作 – 膨胀与腐蚀，使用不同的结构元素实现对输入图像的操作、得到想要的结果。  膨胀，输出的像素值是结构元素覆盖下输入图像的最大像素值 腐蚀，输出的">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/18/OpenCV-9/one.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/18/OpenCV-9/">
+
+
+
+
+
+  <title>OpenCV学习笔记9_形态学操作应用 | Hexo_zhixingyu</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo_zhixingyu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-主页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-总览">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            总览
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/18/OpenCV-9/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Passwordxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo_zhixingyu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenCV学习笔记9_形态学操作应用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-18T08:28:08+08:00">
+                2019-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenCV/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenCV</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenCV/基础/" itemprop="url" rel="index">
+                    <span itemprop="name">基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="形态学操作应用-提取水平与垂直线"><a href="#形态学操作应用-提取水平与垂直线" class="headerlink" title="形态学操作应用-提取水平与垂直线"></a>形态学操作应用-提取水平与垂直线</h2><ul>
+<li>原理方法</li>
+<li>实现步骤</li>
+<li>代码演示</li>
+</ul>
+<h3 id="原理方法"><a href="#原理方法" class="headerlink" title="原理方法"></a>原理方法</h3><ul>
+<li><p>图像形态学操作时候，可以通过自定义的结构元素实现结构元素<br>对输入图像一些对象敏感、另外一些对象不敏感，这样就会让敏<br>感的对象改变而不敏感的对象保留输出。通过使用两个最基本的<br>形态学操作 – <strong>膨胀</strong>与<strong>腐蚀</strong>，使用不同的结构元素实现对输入图像<br>的操作、得到想要的结果。</p>
+<ul>
+<li>膨胀，输出的像素值是结构元素覆盖下输入图像的最大像素值</li>
+<li><p>腐蚀，输出的像素值是结构元素覆盖下输入图像的最小像素值</p>
+</li>
+<li><p>二值图像与灰度图像上的<strong>膨胀</strong>操作<img src="/2019/02/18/OpenCV-9/one.png" alt=""></p>
+</li>
+<li>二值图像与灰度图像上的<strong>腐蚀</strong>操作<br><img src="/2019/02/18/OpenCV-9/two.png" alt=""></li>
+</ul>
+</li>
+<li><p>结构元素</p>
+<ul>
+<li>上述膨胀与腐蚀过程可以使用任意的结构元素。</li>
+<li><p>常见的形状：矩形、园、直线、磁盘形状、砖石形状等各种自定义形状。</p>
+<p>  <img src="/2019/02/18/OpenCV-9/three.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="提取步骤"><a href="#提取步骤" class="headerlink" title="提取步骤"></a>提取步骤</h3><ol>
+<li>输入图像彩色图像 <code>imread</code></li>
+<li>转换为灰度图像 – <code>cvtColor(src, gray, CV_BGR2GRAY);</code></li>
+<li>转换为二值图像 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> adaptiveThreshold(</span><br><span class="line">Mat src, <span class="comment">// 输入的灰度图像</span></span><br><span class="line">Mat dest, <span class="comment">// 二值图像</span></span><br><span class="line"><span class="keyword">double</span> maxValue, <span class="comment">// 二值图像最大值</span></span><br><span class="line"><span class="keyword">int</span> adaptiveMethod <span class="comment">// 自适应方法，只能其中之一 – </span></span><br><span class="line">		         <span class="comment">// ADAPTIVE_THRESH_MEAN_C ， ADAPTIVE_THRESH_GAUSSIAN_C </span></span><br><span class="line"><span class="keyword">int</span> thresholdType,<span class="comment">// 阈值类型</span></span><br><span class="line"><span class="keyword">int</span> blockSize, <span class="comment">// 块大小</span></span><br><span class="line"><span class="keyword">double</span> C <span class="comment">// 常量C 可以是正数，0，负数</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/2019/02/18/OpenCV-9/six.png" alt=""><br><img src="/2019/02/18/OpenCV-9/seven.png" alt=""></p>
+<ol start="4">
+<li><p>定义结构元素</p>
+<ul>
+<li>一个像素宽的水平线 -  水平长度 width/30</li>
+<li>一个像素宽的垂直线 – 垂直长度 height/30</li>
+</ul>
+</li>
+<li><p>开操作 （腐蚀+膨胀）提取 水平与垂直线</p>
+</li>
+<li>后处理<ul>
+<li><code>bitwise_not（Mat bin, Mat dst）</code>像素取反操作，255 – SrcPixel</li>
+<li>（可选）模糊（blur）</li>
+</ul>
+</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><ul>
+<li>提取水平结构元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	Mat src, dst;</span><br><span class="line">	src = imread(<span class="string">"D:/Documents/Pictures/testa.png"</span>);</span><br><span class="line">	<span class="keyword">if</span> (!src.data) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"could not open\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	String s[] = &#123; <span class="string">"input"</span>,<span class="string">"output"</span>, <span class="string">"gray"</span>, <span class="string">"bin"</span> &#125;;</span><br><span class="line">	namedWindow(s[<span class="number">0</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">1</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">2</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">3</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	imshow(s[<span class="number">0</span>], src);</span><br><span class="line">	</span><br><span class="line">	Mat gray;<span class="comment">//灰度图像</span></span><br><span class="line">	cvtColor(src, gray, CV_BGR2GRAY);</span><br><span class="line">	imshow(s[<span class="number">2</span>], gray);</span><br><span class="line"></span><br><span class="line">	Mat bin;<span class="comment">//二值图像</span></span><br><span class="line">	adaptiveThreshold(~gray, bin, <span class="number">255</span>, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, <span class="number">15</span>, <span class="number">-2</span>);</span><br><span class="line">	imshow(s[<span class="number">3</span>], bin);</span><br><span class="line">	<span class="comment">//水平结构元素</span></span><br><span class="line">	Mat hline = getStructuringElement(MORPH_RECT, Size(src.cols / <span class="number">16</span>, <span class="number">1</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	</span><br><span class="line">	Mat temp;</span><br><span class="line">	<span class="comment">//erode(bin, temp, hline);//腐蚀</span></span><br><span class="line">	<span class="comment">//dilate(temp, dst, hline);//膨胀</span></span><br><span class="line">	morphologyEx(bin, dst, CV_MOP_OPEN, hline);<span class="comment">//开操作</span></span><br><span class="line">	bitwise_not(dst, dst);</span><br><span class="line">	blur(dst, dst, Size(<span class="number">3</span>, <span class="number">3</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	imshow(s[<span class="number">1</span>], dst);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/18/OpenCV-9/shuiping.png" alt=""></p>
+<ul>
+<li>提取垂直结构元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	Mat src, dst;</span><br><span class="line">	src = imread(<span class="string">"D:/Documents/Pictures/testa.png"</span>);</span><br><span class="line">	<span class="keyword">if</span> (!src.data) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"could not open\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	String s[] = &#123; <span class="string">"input"</span>,<span class="string">"output"</span>, <span class="string">"gray"</span>, <span class="string">"bin"</span> &#125;;</span><br><span class="line">	namedWindow(s[<span class="number">0</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">1</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">2</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">3</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	imshow(s[<span class="number">0</span>], src);</span><br><span class="line">	</span><br><span class="line">	Mat gray;<span class="comment">//灰度图像</span></span><br><span class="line">	cvtColor(src, gray, CV_BGR2GRAY);</span><br><span class="line">	imshow(s[<span class="number">2</span>], gray);</span><br><span class="line"></span><br><span class="line">	Mat bin;<span class="comment">//二值图像</span></span><br><span class="line">	adaptiveThreshold(~gray, bin, <span class="number">255</span>, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, <span class="number">15</span>, <span class="number">-2</span>);</span><br><span class="line">	imshow(s[<span class="number">3</span>], bin);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//垂直结构元素</span></span><br><span class="line">	Mat vline = getStructuringElement(MORPH_RECT, Size(<span class="number">1</span>, src.rows / <span class="number">16</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	</span><br><span class="line">	Mat temp;</span><br><span class="line">	<span class="comment">//erode(bin, temp, vline);//腐蚀</span></span><br><span class="line">	<span class="comment">//dilate(temp, dst, vline);//膨胀</span></span><br><span class="line">	morphologyEx(bin, dst, CV_MOP_OPEN, vline);<span class="comment">//开操作</span></span><br><span class="line">	bitwise_not(dst, dst);</span><br><span class="line">	blur(dst, dst, Size(<span class="number">3</span>, <span class="number">3</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	imshow(s[<span class="number">1</span>], dst);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/18/OpenCV-9/chuizhi.png" alt=""></p>
+<ul>
+<li>提取矩形结构元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	Mat src, dst;</span><br><span class="line">	src = imread(<span class="string">"D:/Documents/Pictures/chars.png"</span>);</span><br><span class="line">	<span class="keyword">if</span> (!src.data) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"could not open\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	String s[] = &#123; <span class="string">"input"</span>,<span class="string">"output"</span>, <span class="string">"gray"</span>, <span class="string">"bin"</span> &#125;;</span><br><span class="line">	namedWindow(s[<span class="number">0</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">1</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">2</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">3</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	imshow(s[<span class="number">0</span>], src);</span><br><span class="line">	</span><br><span class="line">	Mat gray;<span class="comment">//灰度图像</span></span><br><span class="line">	cvtColor(src, gray, CV_BGR2GRAY);</span><br><span class="line">	imshow(s[<span class="number">2</span>], gray);</span><br><span class="line"></span><br><span class="line">	Mat bin;<span class="comment">//二值图像</span></span><br><span class="line">	adaptiveThreshold(~gray, bin, <span class="number">255</span>, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, <span class="number">15</span>, <span class="number">-2</span>);</span><br><span class="line">	imshow(s[<span class="number">3</span>], bin);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//矩形结构</span></span><br><span class="line">	Mat rec = getStructuringElement(MORPH_RECT, Size(<span class="number">3</span>,<span class="number">3</span>), Point(<span class="number">-1</span>, <span class="number">-1</span>));</span><br><span class="line">	Mat temp;</span><br><span class="line">	<span class="comment">//erode(bin, temp, rec);//腐蚀</span></span><br><span class="line">	<span class="comment">//dilate(temp, dst, rec);//膨胀</span></span><br><span class="line">	morphologyEx(bin, dst, CV_MOP_OPEN, rec);<span class="comment">//开操作</span></span><br><span class="line">	bitwise_not(dst, dst);</span><br><span class="line">	</span><br><span class="line">	imshow(s[<span class="number">1</span>], dst);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/18/OpenCV-9/five.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/提取水平元素/" rel="tag"># 提取水平元素</a>
+          
+            <a href="/tags/提取垂直元素/" rel="tag"># 提取垂直元素</a>
+          
+            <a href="/tags/提取矩形元素/" rel="tag"># 提取矩形元素</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/17/OpenCV-8/" rel="next" title="OpenCV学习笔记8_形态学操作">
+                <i class="fa fa-chevron-left"></i> OpenCV学习笔记8_形态学操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Passwordxx">
+            
+              <p class="site-author-name" itemprop="name">Passwordxx</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhixingyu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zyxing25@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://studentke.github.io/" title="Student" target="_blank">Student</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#形态学操作应用-提取水平与垂直线"><span class="nav-number">1.</span> <span class="nav-text">形态学操作应用-提取水平与垂直线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理方法"><span class="nav-number">1.1.</span> <span class="nav-text">原理方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取步骤"><span class="nav-number">1.2.</span> <span class="nav-text">提取步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Passwordxx</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
