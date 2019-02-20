@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="基本阈值操作 图像阈值 阈值类型 代码演示  图像阈值(threshold) 阈值 是什么？简单点说是把图像分割的标尺，这个标尺是根据什么产生的，阈值产生算法？阈值类型。（Binary segmentation）   阈值类型 阈值二值化(threshold binary) 左下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值       阈值反二值化(threshold bin">
+<meta name="description" content="基本阈值操作 图像阈值 阈值类型 代码演示  图像阈值(threshold) 阈值 是什么？简单点说是把图像分割的标尺，这个标尺是根据什么产生的，阈值产生算法？阈值类型。（Binary segmentation）   阈值类型 阈值二值化(threshold binary) 下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值       阈值反二值化(threshold bina">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenCV11_基本阈值操作">
 <meta property="og:url" content="http://yoursite.com/2019/02/20/OpenCV-11/index.html">
 <meta property="og:site_name" content="Hexo_zhixingyu">
-<meta property="og:description" content="基本阈值操作 图像阈值 阈值类型 代码演示  图像阈值(threshold) 阈值 是什么？简单点说是把图像分割的标尺，这个标尺是根据什么产生的，阈值产生算法？阈值类型。（Binary segmentation）   阈值类型 阈值二值化(threshold binary) 左下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值       阈值反二值化(threshold bin">
+<meta property="og:description" content="基本阈值操作 图像阈值 阈值类型 代码演示  图像阈值(threshold) 阈值 是什么？简单点说是把图像分割的标尺，这个标尺是根据什么产生的，阈值产生算法？阈值类型。（Binary segmentation）   阈值类型 阈值二值化(threshold binary) 下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值       阈值反二值化(threshold bina">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/02/20/OpenCV-11/one.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/02/20/OpenCV-11/two.png">
@@ -104,10 +104,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/20/OpenCV-11/invertzero2.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/20/OpenCV-11/invertzero3.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/20/OpenCV-11/summary.png">
-<meta property="og:updated_time" content="2019-02-20T03:46:55.042Z">
+<meta property="og:updated_time" content="2019-02-20T04:47:42.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenCV11_基本阈值操作">
-<meta name="twitter:description" content="基本阈值操作 图像阈值 阈值类型 代码演示  图像阈值(threshold) 阈值 是什么？简单点说是把图像分割的标尺，这个标尺是根据什么产生的，阈值产生算法？阈值类型。（Binary segmentation）   阈值类型 阈值二值化(threshold binary) 左下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值       阈值反二值化(threshold bin">
+<meta name="twitter:description" content="基本阈值操作 图像阈值 阈值类型 代码演示  图像阈值(threshold) 阈值 是什么？简单点说是把图像分割的标尺，这个标尺是根据什么产生的，阈值产生算法？阈值类型。（Binary segmentation）   阈值类型 阈值二值化(threshold binary) 下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值       阈值反二值化(threshold bina">
 <meta name="twitter:image" content="http://yoursite.com/2019/02/20/OpenCV-11/one.jpg">
 
 
@@ -398,41 +398,41 @@
 <p><img src="/2019/02/20/OpenCV-11/one.jpg" alt=""><br><img src="/2019/02/20/OpenCV-11/two.png" alt=""></p>
 <h3 id="阈值类型"><a href="#阈值类型" class="headerlink" title="阈值类型"></a>阈值类型</h3><ul>
 <li>阈值二值化(threshold binary)<ul>
-<li>左下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值 </li>
+<li>下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值 </li>
 </ul>
 </li>
 </ul>
 <p><img src="/2019/02/20/OpenCV-11/three.png" alt=""><br><img src="/2019/02/20/OpenCV-11/seven.png" alt=""><br><img src="/2019/02/20/OpenCV-11/six.png" alt=""></p>
 <ul>
 <li>阈值反二值化(threshold binary Inverted)<ul>
-<li>左下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值</li>
+<li>下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值</li>
 </ul>
 </li>
 </ul>
 <p><img src="/2019/02/20/OpenCV-11/three.png" alt=""><br><img src="/2019/02/20/OpenCV-11/nine.png" alt=""><br><img src="/2019/02/20/OpenCV-11/eight.png" alt=""></p>
 <ul>
 <li>截断 (truncate)<ul>
-<li>左下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值</li>
+<li>下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值</li>
 </ul>
 </li>
 </ul>
 <p><img src="/2019/02/20/OpenCV-11/truncate1.png" alt=""><br><img src="/2019/02/20/OpenCV-11/truncate2.png" alt=""><br><img src="/2019/02/20/OpenCV-11/truncate3.png" alt=""></p>
 <ul>
 <li>阈值取零 (threshold to zero)<ul>
-<li>左下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值 </li>
+<li>下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值 </li>
 </ul>
 </li>
 </ul>
 <p><img src="/2019/02/20/OpenCV-11/zero1.png" alt=""><br><img src="/2019/02/20/OpenCV-11/zero2.png" alt=""><br><img src="/2019/02/20/OpenCV-11/zero3.png" alt=""></p>
 <ul>
 <li>阈值反取零 (threshold to zero inverted)<ul>
-<li>左下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值 </li>
+<li>下方的图表示图像像素点Src(x,y)值分布情况，蓝色水平线表示阈值 </li>
 </ul>
 </li>
 </ul>
 <p><img src="/2019/02/20/OpenCV-11/invertzero1.png" alt=""><br><img src="/2019/02/20/OpenCV-11/invertzero2.png" alt=""><br><img src="/2019/02/20/OpenCV-11/invertzero3.png" alt=""></p>
 <ul>
-<li>API<br><img src="/2019/02/20/OpenCV-11/summary.png" alt=""></li>
+<li>API<br><img src="/2019/02/20/OpenCV-11/summary.png" alt=""><br>使用<code>THRESH_OTSU</code> 和 <code>THRESH_TRIANGLE</code>时图像必须是八位的。</li>
 </ul>
 <h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"math.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line">Mat src, dst, gray;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> threshold_value = <span class="number">127</span>;</span><br><span class="line"><span class="keyword">int</span> threshold_max = <span class="number">255</span>;</span><br><span class="line">String s[] = &#123; <span class="string">"input"</span>, <span class="string">"output"</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> type_value = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> type_max = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">threshold_demo</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">void</span>*)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	src = imread(<span class="string">"D:/documents/pictures/test.jpg"</span>);</span><br><span class="line">	<span class="keyword">if</span> (!src.data) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"could not open\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	namedWindow(s[<span class="number">0</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	namedWindow(s[<span class="number">1</span>], CV_WINDOW_AUTOSIZE);</span><br><span class="line">	imshow(s[<span class="number">0</span>], src);</span><br><span class="line">	</span><br><span class="line">	createTrackbar(<span class="string">"threshold value"</span>, s[<span class="number">1</span>], &amp;threshold_value, threshold_max, threshold_demo);</span><br><span class="line">	createTrackbar(<span class="string">"type value"</span>, s[<span class="number">1</span>], &amp;type_value, type_max, threshold_demo);</span><br><span class="line">	threshold_demo(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">threshold_demo</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">void</span>*)</span> </span>&#123;</span><br><span class="line">	cvtColor(src, gray, CV_BGR2GRAY);</span><br><span class="line">	<span class="comment">//THRESH_BINARY  0</span></span><br><span class="line">	<span class="comment">//THRESH_BINARY_INV 1</span></span><br><span class="line">	<span class="comment">//THRESH_TRUNC 2</span></span><br><span class="line">	<span class="comment">//THRESH_ZERO 3</span></span><br><span class="line">	<span class="comment">//THRESH_ZERO_INV 4</span></span><br><span class="line">	</span><br><span class="line">	threshold(gray, dst,threshold_value, threshold_max, type_value);</span><br><span class="line">	<span class="comment">//threshold(gray, dst, 0, 255, THRESH_OTSU | type_value);//自动计算阈值</span></span><br><span class="line">	<span class="comment">//threshold(gray, dst, 0, 255, THRESH_TRIANGLE | type_value);//三角形法计算阈值</span></span><br><span class="line">	</span><br><span class="line">	imshow(s[<span class="number">1</span>], dst);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
