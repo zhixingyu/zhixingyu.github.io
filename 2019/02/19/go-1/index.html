@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="基本语法（一）Go语言的变量定义 使用var关键字 让编译器自动决定类型 使用:=定义变量 作用域使用var关键字 go中的变量只要定义就必须使用  12345func variableIntialValue()&amp;#123;	var a, b int = 3,4	var s string = &quot;abc&quot;	fmt.Println(a, b, s )&amp;#125;  printf()可以打印出空串123">
+<meta name="description" content="基本语法（一） 变量类型写在变量名之后 编译器可推测变量类型 没有char，只有rune 原生支持复数类型 Go语言的变量定义 使用var关键字  让编译器自动决定类型 使用:=定义变量 作用域 使用var关键字 go中的变量只要定义就必须使用  12345func variableIntialValue()&amp;#123;	var a, b int = 3,4	var s string = &quot;abc">
 <meta name="keywords" content="变量定义">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go-变量定义">
 <meta property="og:url" content="http://yoursite.com/2019/02/19/go-1/index.html">
 <meta property="og:site_name" content="Hexo_zhixingyu">
-<meta property="og:description" content="基本语法（一）Go语言的变量定义 使用var关键字 让编译器自动决定类型 使用:=定义变量 作用域使用var关键字 go中的变量只要定义就必须使用  12345func variableIntialValue()&amp;#123;	var a, b int = 3,4	var s string = &quot;abc&quot;	fmt.Println(a, b, s )&amp;#125;  printf()可以打印出空串123">
+<meta property="og:description" content="基本语法（一） 变量类型写在变量名之后 编译器可推测变量类型 没有char，只有rune 原生支持复数类型 Go语言的变量定义 使用var关键字  让编译器自动决定类型 使用:=定义变量 作用域 使用var关键字 go中的变量只要定义就必须使用  12345func variableIntialValue()&amp;#123;	var a, b int = 3,4	var s string = &quot;abc">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-19T08:25:20.341Z">
+<meta property="og:updated_time" content="2019-02-20T12:06:45.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go-变量定义">
-<meta name="twitter:description" content="基本语法（一）Go语言的变量定义 使用var关键字 让编译器自动决定类型 使用:=定义变量 作用域使用var关键字 go中的变量只要定义就必须使用  12345func variableIntialValue()&amp;#123;	var a, b int = 3,4	var s string = &quot;abc&quot;	fmt.Println(a, b, s )&amp;#125;  printf()可以打印出空串123">
+<meta name="twitter:description" content="基本语法（一） 变量类型写在变量名之后 编译器可推测变量类型 没有char，只有rune 原生支持复数类型 Go语言的变量定义 使用var关键字  让编译器自动决定类型 使用:=定义变量 作用域 使用var关键字 go中的变量只要定义就必须使用  12345func variableIntialValue()&amp;#123;	var a, b int = 3,4	var s string = &quot;abc">
 
 
 
@@ -132,6 +132,16 @@
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1872d7338148ff1dab84ffee87e32569";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -329,34 +339,18 @@
 
           
             
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/02/19/go-1/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/02/19/go-1/" itemprop="commentsCount"></span>
-                </a>
-              
-            
           
 
           
           
 
           
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
 
           
 
           
 
-        </span></div>
+        </div>
       </header>
     
 
@@ -369,11 +363,18 @@
       
 
       
-        <h1 id="基本语法（一）"><a href="#基本语法（一）" class="headerlink" title="基本语法（一）"></a>基本语法（一）</h1><h2 id="Go语言的变量定义"><a href="#Go语言的变量定义" class="headerlink" title="Go语言的变量定义"></a>Go语言的变量定义</h2><ul>
-<li>使用var关键字</li>
+        <h1 id="基本语法（一）"><a href="#基本语法（一）" class="headerlink" title="基本语法（一）"></a>基本语法（一）</h1><ul>
+<li>变量类型写在变量名之后</li>
+<li>编译器可推测变量类型</li>
+<li>没有char，只有rune</li>
+<li>原生支持复数类型</li>
+<li><h2 id="Go语言的变量定义"><a href="#Go语言的变量定义" class="headerlink" title="Go语言的变量定义"></a>Go语言的变量定义</h2></li>
+<li><p>使用var关键字</p>
+</li>
 <li>让编译器自动决定类型</li>
 <li>使用:=定义变量</li>
-<li>作用域<h3 id="使用var关键字"><a href="#使用var关键字" class="headerlink" title="使用var关键字"></a>使用var关键字</h3></li>
+<li>作用域</li>
+<li><h3 id="使用var关键字"><a href="#使用var关键字" class="headerlink" title="使用var关键字"></a>使用var关键字</h3></li>
 <li>go中的变量只要定义就必须使用</li>
 </ul>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">variableIntialValue</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a, b <span class="keyword">int</span> = <span class="number">3</span>,<span class="number">4</span></span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abc"</span></span><br><span class="line">	fmt.Println(a, b, s )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -469,11 +470,6 @@
           
 
   
-    <div class="comments" id="comments">
-      <div id="SOHUCS"></div>
-    </div>
-
-  
 
 
 
@@ -523,7 +519,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -545,7 +541,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -644,14 +640,6 @@
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-
-  
-</div>
-
 
 
 
@@ -797,21 +785,6 @@
 
 
 
-
-  
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cyu5ShGqG';
-      var conf = 'f43a552c96bb968c95e412fdfcd82cf8';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
-  
 
 
 
