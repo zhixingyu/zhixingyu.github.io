@@ -646,7 +646,7 @@
 
 
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
@@ -657,10 +657,10 @@
     new Valine({
         el: '#comments' ,
         verify: false,
-        notify: false,
+        notify: true,
         appId: 'NwnHW4rALOwV2xkMcjfdcT0o-gzGzoHsz',
         appKey: 'qpHzGW5PGRy0OY4QIdjeFvD6',
-        placeholder: 'Just go go',
+        placeholder: '随便写点什么吧~~',
         avatar:'mm',
         guest_info:guest,
         pageSize:'10' || 10,
