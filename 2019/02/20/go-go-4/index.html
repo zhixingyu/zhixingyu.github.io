@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="switch,if,">
 
 
 
@@ -79,14 +79,23 @@
 
 
 
+<meta name="description" content="Go基本语法（四）条件语句if if的条件里不需要括号    if的条件里可以赋值 if的条件里赋值的变量作用域就在这个if语句里   switch switch会自动break，除非使用fallthrough 也可以直接switch多个条件    switch后可以没有表达式">
+<meta name="keywords" content="switch,if">
 <meta property="og:type" content="article">
-<meta property="og:title" content="go&#x2F;go_4">
+<meta property="og:title" content="go4_条件语句">
 <meta property="og:url" content="http://yoursite.com/2019/02/20/go-go-4/index.html">
 <meta property="og:site_name" content="Hexo_zhixingyu">
+<meta property="og:description" content="Go基本语法（四）条件语句if if的条件里不需要括号    if的条件里可以赋值 if的条件里赋值的变量作用域就在这个if语句里   switch switch会自动break，除非使用fallthrough 也可以直接switch多个条件    switch后可以没有表达式">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-20T11:49:58.849Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/20/go-go-4/one.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/20/go-go-4/two.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/20/go-go-4/three.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/20/go-go-4/go-go-4.four.png">
+<meta property="og:updated_time" content="2019-02-21T13:49:54.464Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="go&#x2F;go_4">
+<meta name="twitter:title" content="go4_条件语句">
+<meta name="twitter:description" content="Go基本语法（四）条件语句if if的条件里不需要括号    if的条件里可以赋值 if的条件里赋值的变量作用域就在这个if语句里   switch switch会自动break，除非使用fallthrough 也可以直接switch多个条件    switch后可以没有表达式">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/20/go-go-4/one.png">
 
 
 
@@ -122,7 +131,7 @@
 
 
 
-  <title>go/go_4 | Hexo_zhixingyu</title>
+  <title>go4_条件语句 | Hexo_zhixingyu</title>
   
 
 
@@ -276,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">go/go_4</h1>
+          <h1 class="post-title" itemprop="name headline">go4_条件语句</h1>
         
 
         <div class="post-meta">
@@ -298,6 +307,39 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go语言/" itemprop="url" rel="index">
+                    <span itemprop="name">Go语言</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go语言/基本语法/" itemprop="url" rel="index">
+                    <span itemprop="name">基本语法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -336,7 +378,25 @@
       
 
       
-        
+        <h1 id="Go基本语法（四）"><a href="#Go基本语法（四）" class="headerlink" title="Go基本语法（四）"></a>Go基本语法（四）</h1><h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><ul>
+<li>if的条件里不需要括号</li>
+</ul>
+<p><img src="/2019/02/20/go-go-4/one.png" alt=""></p>
+<ul>
+<li>if的条件里可以赋值</li>
+<li>if的条件里赋值的变量作用域就在这个if语句里</li>
+</ul>
+<p><img src="/2019/02/20/go-go-4/two.png" alt=""></p>
+<h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><ul>
+<li>switch会自动break，除非使用fallthrough</li>
+<li>也可以直接switch多个条件</li>
+</ul>
+<p><img src="/2019/02/20/go-go-4/three.png" alt=""></p>
+<ul>
+<li>switch后可以没有表达式</li>
+</ul>
+<p><img src="/2019/02/20/go-go-4/go-go-4.four.png" alt=""> </p>
+
       
     </div>
     
@@ -350,6 +410,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/switch/" rel="tag"># switch</a>
+          
+            <a href="/tags/if/" rel="tag"># if</a>
+          
+        </div>
       
 
       
@@ -429,8 +497,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -447,7 +524,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -469,7 +546,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -508,6 +585,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Go基本语法（四）"><span class="nav-number">1.</span> <span class="nav-text">Go基本语法（四）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#条件语句"><span class="nav-number">1.1.</span> <span class="nav-text">条件语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if"><span class="nav-number">1.1.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#switch"><span class="nav-number">1.1.2.</span> <span class="nav-text">switch</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
